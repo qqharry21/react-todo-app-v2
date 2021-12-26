@@ -25,32 +25,17 @@ function App() {
     }
   };
 
-  const saveLocalTodoList = () => {
+  useEffect(() => {
+    filterHandler();
+  }, [todoList, status]);
+
+  const saveLoaclTodoList = () => {
     if (localStorage.getItem('todoList')) {
       localStorage.setItem('todoList', JSON.stringify(todoList));
     } else {
       localStorage.setItem('todoList', JSON.stringify([]));
     }
   };
-
-  const getLocalTodoList = () => {
-    if (localStorage.getItem('todoList')) {
-      let newTodoList = localStorage.getItem('todoList', JSON.stringify(todoList));
-      setTodoList(JSON.parse(newTodoList));
-    } else {
-      localStorage.setItem('todoList', JSON.stringify([]));
-    }
-  };
-
-  // 初始化localStorage
-  useEffect(() => {
-    getLocalTodoList();
-  }, []);
-
-  useEffect(() => {
-    filterHandler();
-    saveLocalTodoList();
-  }, [todoList, status]);
 
   return (
     <div className='App'>

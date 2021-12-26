@@ -1,5 +1,5 @@
 /** @format */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 import Form from './components/Form';
@@ -20,42 +20,14 @@ function App() {
         setFilterTodoList(todoList.filter(todo => todo.complete === false));
         break;
       default:
-        setFilterTodoList(todoList);
+        setFilterTodoList(todoList.filter(todo => todo.complete === false));
         break;
     }
   };
-
-  const saveLocalTodoList = () => {
-    if (localStorage.getItem('todoList')) {
-      localStorage.setItem('todoList', JSON.stringify(todoList));
-    } else {
-      localStorage.setItem('todoList', JSON.stringify([]));
-    }
-  };
-
-  const getLocalTodoList = () => {
-    if (localStorage.getItem('todoList')) {
-      let newTodoList = localStorage.getItem('todoList', JSON.stringify(todoList));
-      setTodoList(JSON.parse(newTodoList));
-    } else {
-      localStorage.setItem('todoList', JSON.stringify([]));
-    }
-  };
-
-  // 初始化localStorage
-  useEffect(() => {
-    getLocalTodoList();
-  }, []);
-
-  useEffect(() => {
-    filterHandler();
-    saveLocalTodoList();
-  }, [todoList, status]);
-
   return (
     <div className='App'>
       <header>
-        <h1>Harry's Todo List</h1>
+        <h1>Harry's Todo list</h1>
       </header>
       <Form
         inputText={inputText}
@@ -64,7 +36,7 @@ function App() {
         setTodoList={setTodoList}
         setStatus={setStatus}
       />
-      <TodoList todoList={todoList} setTodoList={setTodoList} filterTodoList={filterTodoList} />
+      <TodoList todoList={todoList} setTodoList={setTodoList} />
     </div>
   );
 }

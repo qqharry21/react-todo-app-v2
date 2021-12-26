@@ -1,6 +1,6 @@
 {
   "short_name": "React todo app",
-  "name": "React simple todo app project",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",

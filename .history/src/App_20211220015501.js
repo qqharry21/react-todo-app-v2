@@ -35,14 +35,12 @@ function App() {
 
   const getLocalTodoList = () => {
     if (localStorage.getItem('todoList')) {
-      let newTodoList = localStorage.getItem('todoList', JSON.stringify(todoList));
-      setTodoList(JSON.parse(newTodoList));
+      localStorage.setItem('todoList', JSON.stringify(todoList));
     } else {
       localStorage.setItem('todoList', JSON.stringify([]));
     }
   };
 
-  // 初始化localStorage
   useEffect(() => {
     getLocalTodoList();
   }, []);
